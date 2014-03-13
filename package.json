@@ -1,0 +1,27 @@
+{
+  "name": "wolverine",
+  "version": "0.0.1",
+  "description": "Library for server-side logging with a lot of options",
+  "main": "lib/wolverine.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "log",
+    "logging"
+  ],
+  "author": {
+    "name": "talyssonoc",
+    "email": "talyssonoc@gmail.com"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "mocha": "^1.17.1",
+    "chai": "^1.9.0",
+    "load-grunt-tasks": "^0.4.0",
+    "grunt-mocha-cli": "^1.7.0"
+  },
+  "dependencies": {
+    "ansi": "^0.2.1"
+  }
+}
