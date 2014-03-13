@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Library for server-side logging with a lot of options",
   "main": "lib/wolverine.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/talyssonoc/wolverinejs.git"
+  },
   "scripts": {
     "test": "grunt test"
   },
