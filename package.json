@@ -1,6 +1,6 @@
 {
   "name": "wolverine",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Useful library for server-side logging",
   "main": "lib/wolverine.js",
   "repository": {

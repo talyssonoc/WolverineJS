@@ -7,10 +7,7 @@ chai.should();
 var expect = chai.expect;
 var Wolverine = require('../lib/wolverine');
 
-var infoLog = new Wolverine(Wolverine.INFO, {time: false}),
-    warnLog = new Wolverine(Wolverine.WARN, {time: false}),
-    offLog = new Wolverine(Wolverine.OFF, {time: false}),
-    stackLog = new Wolverine(Wolverine.ERROR, {time: false, printStack: true});
+var infoLog = new Wolverine(Wolverine.INFO, {time: false});
 
 describe('WolverineJS module', function() {
   it('Wolverine.ALL level should log everything', function() {
@@ -41,10 +38,12 @@ describe('WolverineJS module', function() {
   });
 
   it('Should not print if the logged level is not allowed', function() {
+    var warnLog = new Wolverine(Wolverine.WARN, {time: false});
     expect(warnLog.info('Should not log it')).to.equal('');
   });
 
   it('Should log just when activated', function() {
+    var offLog = new Wolverine(Wolverine.OFF, {time: false});
     expect(offLog.info('Should not log it')).to.equal('');
     expect(offLog.setLevel(Wolverine.INFO).info('Should log it')).to.equal('[INFO]\tShould log it');
   });
@@ -59,6 +58,7 @@ describe('WolverineJS module', function() {
   });
 
   it('Should print error stack from an Exception passing the pushStack flag on constructor', function() {
+    var stackLog = new Wolverine(Wolverine.ERROR, {time: false, printStack: true});
     try {
       throw new Error('Surprise!')
     }
@@ -74,6 +74,11 @@ describe('WolverineJS module', function() {
     catch(e) {
       expect(infoLog.error(e, {printStack: true})).to.equal('[ERROR]\t' + e.stack);      
     }
+  });
+
+  it('Should not show the level name', function() {
+    var noNameLog = new Wolverine({time: false, printLevel: false});
+    expect(noNameLog.info('Just me, no level name!')).to.equal('Just me, no level name!');
   });
 
   it('Should add new level correctly', function() {
