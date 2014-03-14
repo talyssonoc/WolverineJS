@@ -13,6 +13,16 @@ var infoLog = new Wolverine(Wolverine.INFO, {time: false}),
     stackLog = new Wolverine(Wolverine.ERROR, {time: false, printStack: true});
 
 describe('WolverineJS module', function() {
+  it('Wolverine.ALL level should log everything', function() {
+    var allLog = new Wolverine(Wolverine.ALL, {time: false});
+    expect(allLog.verbose('Message')).to.equal('[VERBOSE]\tMessage');
+    expect(allLog.debug('Message')).to.equal('[DEBUG]\tMessage');
+    expect(allLog.info('Message')).to.equal('[INFO]\tMessage');
+    expect(allLog.warn('Message')).to.equal('[WARN]\tMessage');
+    expect(allLog.error('Message')).to.equal('[ERROR]\tMessage');
+    expect(allLog.fatal('Message')).to.equal('[FATAL]\tMessage');
+  });
+
   it('Default level = ALL', function() {
     var defaultLog = new Wolverine({time: false});
     expect(defaultLog.info('Message')).to.equal('[INFO]\tMessage');

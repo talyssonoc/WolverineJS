@@ -58,6 +58,7 @@ var logger = new Wolverine(Wolverine.<LEVEL>, options);
 <br/>
 Then just log with one of the levels:
 ```js
+logger.verbose('Message');
 logger.debug('Message');
 logger.info('Title', 'Message');
 logger.warn('Title', 'Hi, I\'m %s and I\'m awesome', 'WolverineJS');
@@ -83,6 +84,7 @@ Levels
 ======
 
 * `Wolverine.ALL` Logs everything
+* `Wolverine.VERBOSE` Informal message
 * `Wolverine.DEBUG` Messages to help debugging the app
 * `Wolverine.INFO` Informational message
 * `Wolverine.WARN` Warning condition
