@@ -22,13 +22,11 @@ var logger = new Wolverine([Wolverine.<LEVEL>], [options]); //For levels and opt
 Log it!
 
 ```js
-logger.info('Title');
-logger.warn('Title', 'Message');
-logger.error('Title', 'Hi, I\'m %s and I\'m awesome', 'WolverineJS');
+logger.<LEVEL>('Title', 'Hi, I\'m %s and I\'m awesome', 'WolverineJS');
 ```
 
-API
-===
+Instantiating and logging
+=========================
 
 You can instantiate a WolverineJS object in four ways:
 <br/><br/>
@@ -59,29 +57,22 @@ var logger = new Wolverine(Wolverine.<LEVEL>, options);
 Then just log with one of the levels:
 ```js
 logger.verbose('Message');
-logger.debug('Message');
 logger.info('Title', 'Message');
 logger.warn('Title', 'Hi, I\'m %s and I\'m awesome', 'WolverineJS');
-logger.error('Message');
-logger.fatal('Message');
 try {
     throw new Error('Surprise!');
 }
 catch(e) {
     logger.error(e);
-}
-try {
-    throw new Error('Surprise!');
-}
-catch(e) {
     logger.error(e, {printStack: true});
+
 }
 ```
 
 Logging with 3 or more parameters will follow the [util.format](http://nodejs.org/api/util.html#util_util_format_format) signature
 
-Levels
-======
+Default levels
+==============
 
 * `Wolverine.ALL` Logs everything
 * `Wolverine.VERBOSE` Informal message
@@ -98,3 +89,20 @@ Options
 * `output` Nothing = print to terminal. String = Path to a log file where the output will be writen
 * `time` Show time in the beginning of each line (default: true)
 * `printStack` If an Error object is passed to be logged, print its error stack (default: false). This flag can also be passed when a log method is called
+
+API
+===
+
+* `logger.<LEVEL>()` Check the session above
+* `logger.setLevel(Wolverine.<LEVEL>)` Set the logger to the given logging level
+* `logger.getLevel()` Returns the current logging level
+* `logger.addLevel(level, [newLevelOptions])` Adds a new level to the logger (see below)
+
+Options to add a new level
+==========================
+
+* `priority` Priority to the new level. Must be a WolverineJS level or a number (default: Wolverine.ALL)
+* `color` Foregroung color of the output. Must be a CSS color name (not a hex code) (default: white)
+* `bg` Background color of the output (default: transparent)
+* `underline` If the output must be underlined (default: false)
+* `bold` If the output must be bold (default: false)

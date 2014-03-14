@@ -76,4 +76,16 @@ describe('WolverineJS module', function() {
     }
   });
 
+  it('Should add new level correctly', function() {
+    var newLevelLog = new Wolverine({time: false});
+    newLevelLog.addLevel('oneLevel', {
+      priority: Wolverine.INFO,
+      color: 'black',
+      bg: 'white',
+      underline: true
+    });
+
+    expect(newLevelLog.oneLevel('to rule them all')).to.equal('[ONELEVEL]\tto rule them all');
+  });
+
 });
