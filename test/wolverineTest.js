@@ -7,9 +7,10 @@ chai.should();
 var expect = chai.expect;
 var Wolverine = require('../lib/wolverine');
 
-var infoLog = new Wolverine(Wolverine.INFO, {time: false});
-var warnLog = new Wolverine(Wolverine.WARN, {time: false});
-var offLog = new Wolverine(Wolverine.OFF, {time: false});
+var infoLog = new Wolverine(Wolverine.INFO, {time: false}),
+    warnLog = new Wolverine(Wolverine.WARN, {time: false}),
+    offLog = new Wolverine(Wolverine.OFF, {time: false}),
+    stackLog = new Wolverine(Wolverine.ERROR, {time: false, printStack: true});
 
 describe('WolverineJS module', function() {
   it('Default level = ALL', function() {
@@ -36,6 +37,33 @@ describe('WolverineJS module', function() {
   it('Should log just when activated', function() {
     expect(offLog.info('Should not log it')).to.equal('');
     expect(offLog.setLevel(Wolverine.INFO).info('Should log it')).to.equal('[INFO]\tShould log it');
+  });
+
+  it('Should print error message from a \'throw new Error(message)\'', function() {
+    try {
+      throw new Error('Surprise!')
+    }
+    catch(e) {
+      expect(infoLog.error(e)).to.equal('[ERROR]\tError: Surprise!');      
+    }
+  });
+
+  it('Should print error stack from an Exception passing the pushStack flag on constructor', function() {
+    try {
+      throw new Error('Surprise!')
+    }
+    catch(e) {
+      expect(stackLog.error(e)).to.equal('[ERROR]\t' + e.stack);      
+    }
+  });
+
+  it('Should print error stack from an Exception passing the pushStack flag on constructor', function() {
+    try {
+      throw new Error('Surprise!')
+    }
+    catch(e) {
+      expect(infoLog.error(e, {printStack: true})).to.equal('[ERROR]\t' + e.stack);      
+    }
   });
 
 });

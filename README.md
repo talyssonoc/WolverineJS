@@ -63,6 +63,18 @@ logger.info('Title', 'Message');
 logger.warn('Title', 'Hi, I\'m %s and I\'m awesome', 'WolverineJS');
 logger.error('Message');
 logger.fatal('Message');
+try {
+    throw new Error('Surprise!');
+}
+catch(e) {
+    logger.error(e);
+}
+try {
+    throw new Error('Surprise!');
+}
+catch(e) {
+    logger.error(e, {printStack: true});
+}
 ```
 
 Logging with 3 or more parameters will follow the [util.format](http://nodejs.org/api/util.html#util_util_format_format) signature
@@ -83,3 +95,4 @@ Options
 
 * `output` Nothing = print to terminal. String = Path to a log file where the output will be writen
 * `time` Show time in the beginning of each line (default: true)
+* `printStack` If an Error object is passed to be logged, print its error stack (default: false). This flag can also be passed when a log method is called
