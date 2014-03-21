@@ -86,7 +86,10 @@ Default levels
 Options
 =======
 
-* `output` Nothing = print to terminal. String = Path to a log file where the output will be writen (default: Nothing)
+* `output` (default: Nothing)
+    * If ommited, print to the terminal
+    * `String` Path to a file where the logs will be writen
+    * `Stream` Log messages will be writen to the stream
 * `time` Show time in the beginning of each line (default: true)
 * `printStack` If an Error object is passed to be logged, print its error stack (default: false). This flag can also be passed when a log method is called
 * `printLevel` If the level name must be printed before the message (default: true)
