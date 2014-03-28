@@ -48,4 +48,9 @@ describe('Common tests', function() {
     expect(offLog.setLevel(Wolverine.INFO).info('Should log it')).to.equal('[INFO]\tShould log it');
   });
 
+  it('Should show the line', function() {
+    var lineLog = new Wolverine({time: false, silent: true, printFileInfo: true});
+    expect(lineLog.info('Message')).to.equal('[wolverineTest.js:53]\t[INFO]\tMessage');
+  });
+
 });

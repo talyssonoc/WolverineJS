@@ -93,6 +93,7 @@ Options
 * `time` Show time in the beginning of each line (default: true)
 * `printStack` If an Error object is passed to be logged, print its error stack (default: false). This flag can also be passed when a log method is called
 * `printLevel` If the level name must be printed before the message (default: true)
+* `printFileInfo` If the file and line number must be logged (default: false)
 
 API
 ===
