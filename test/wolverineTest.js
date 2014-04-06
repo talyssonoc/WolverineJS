@@ -25,6 +25,11 @@ describe('Common tests', function() {
     expect(defaultLog.info('Message')).to.equal('[INFO]\tMessage');
   });
 
+  it('Should log verbose messages if VERBOSE level is set', function () {
+    var verboseLog = new Wolverine(Wolverine.VERBOSE, {time: false, silent: true});
+    expect(verboseLog.verbose('Message')).to.equal('[VERBOSE]\tMessage');
+  });
+
   it('Just the message', function() {
     expect(infoLog.info('Message')).to.equal('[INFO]\tMessage');
   });
@@ -50,7 +55,7 @@ describe('Common tests', function() {
 
   it('Should show the line', function() {
     var lineLog = new Wolverine({time: false, silent: true, printFileInfo: true});
-    expect(lineLog.info('Message')).to.equal('[wolverineTest.js:53]\t[INFO]\tMessage');
+    expect(lineLog.info('Message')).to.equal('[wolverineTest.js:58]\t[INFO]\tMessage');
   });
 
 });
