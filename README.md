@@ -1,6 +1,8 @@
 WolverineJS
 ===========
 
+[![Build Status](https://travis-ci.org/talyssonoc/WolverineJS.svg?branch=master)](https://travis-ci.org/talyssonoc/WolverineJS)
+
 Useful library for server-side logging
 
 Install WolverineJS
