@@ -10,18 +10,19 @@ var Wolverine = require('../lib/wolverine');
 
 describe('Stream as output', function() {
 
-  it('Should write correctly to the stream', function() {
+  it('Should write correctly to the stream', function(cb) {
     var firstIteration = true;
     var stream = new Stream();
     stream.writable = true;
     stream.write = function(data) {
       if(firstIteration) {
         firstIteration = false;
-        expect(data).to.equal('[INFO]\tMessage');
+        expect(data).to.equal('[INFO]\tMessage\n');
+        cb();
       }
     };
 
-    var defaultLog = new Wolverine(Wolverine.INFO, {time: false, output: stream});
+    var defaultLog = new Wolverine(Wolverine.INFO, {printTime: false, output: stream});
     defaultLog.info('Message');
 
   });
