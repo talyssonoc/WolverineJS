@@ -107,6 +107,8 @@ in case you want to make your own format inside your driver.
 
 This second parameter will have the following attributes:
 
+* `title` The title of the message, if any
+* `message` The message logged
 * `level` The name of the level
 * `date` The Date object of the time it was logged
 * `file` The file the log came from
