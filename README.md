@@ -85,15 +85,41 @@ Logging with 3 or more parameters will follow the [util.format](http://nodejs.or
 * `output` (default: Nothing)
     * If ommited, print to the terminal
     * `String` Path to a file where the logs will be writen
-    * `Object` WolverineJS will call the method `write` of this object, with the message as parameter, so you can use it for Streams or plugins
+    * `Stream` Log messages will be writen to the stream
 * `printTime` Show time in the beginning of each line (default: true)
 * `printStack` If an Error object is passed to be logged, print its error stack (default: false). This flag can also be passed when a log method is called
 * `printLevel` If the level name must be printed before the message (default: true)
 * `printFileInfo` If the file and line number must be logged (default: false)
+* `driver` If you want to write the output to an API or service, you can use a driver. See below.
+
+### Driver
+
+The `driver` option is an object with two attributes, `lib` and `config`.
+
+The first one must be a class, that receives two parameters in the constructor: a WolverineJS logger, and the
+`config` attribute you've passed in the `driver` option.
+
+This class must have an instance method called `write`. This method receives two parameters,
+the first is the log message in its "default" format (with the color codes, that you can remove using
+the `wolverineObj.chalk.stripColor(message)` method from the WolverineJS instance that comes in
+the first parameter of the constructor, and the second is an object with the information
+in case you want to make your own format inside your driver.
+
+This second parameter will have the following attributes:
+
+* `level` The name of the level
+* `date` The Date object of the time it was logged
+* `file` The file the log came from
+* `line` The line of the file the log came from
+* `error` The error object if it was logged an Error
+
+If you disabled one of this options (e.g. { printStack: false }), the attribute won't be on the object.
+
+You can see an example of the implementation of a driver in the [wolverinejs-stream](https://github.com/talyssonoc/wolverinejs-stream/blob/master/index.js) package.
 
 ## API
 
-* `logger.<LEVEL>()` Check the session above
+* `logger.<levelName>()` Check the session `Instantiating and logging`
 * `logger.setLevel(Wolverine.<LEVEL>)` Set the logger to the given logging level
 * `logger.getLevel()` Returns the current logging level
 * `logger.addLevel(level, [newLevelOptions])` Adds a new level to the logger (see below)

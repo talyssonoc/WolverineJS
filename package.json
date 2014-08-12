@@ -26,6 +26,7 @@
     "grunt-mocha-cli": "^1.7.0"
   },
   "dependencies": {
-    "chalk": "^0.5.1"
+    "chalk": "0.5.1",
+    "wolverinejs-stream": "0.0.1"
   }
 }
