@@ -125,6 +125,7 @@ You can see an example of the implementation of a driver in the [wolverinejs-str
 * `logger.setLevel(Wolverine.<LEVEL>)` Set the logger to the given logging level
 * `logger.getLevel()` Returns the current logging level
 * `logger.addLevel(level, [newLevelOptions])` Adds a new level to the logger (see below)
+* `logger.outputStream` The stream WolverineJS writes to
 
 ## Options to add a new level
 
